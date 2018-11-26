@@ -1,0 +1,38 @@
+$top-filter-height: 70px;
+.top-filter {
+  height: $top-filter-height;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: solid 1px #dce4ef;
+  padding: 0 20px;
+  margin-bottom: 8px;
+}
+
+.top-filter-box {
+  display: flex;
+  float: left;
+  align-items: center;
+  justify-content: center;
+  width: 180px; // float: left;
+  height: $top-filter-height;
+  margin-right: 20px;
+  label {
+    text-align: center;
+    width: 80px;
+    height: $top-filter-height;
+    line-height: $top-filter-height;
+    font-size: 14px;
+    color: #374064;
+    margin-right: 10px;
+  }
+}
+
+.top-search-box {
+  float: right;
+  height: $top-filter-height;
+  display: flex;
+  align-items: center;
+  .el-button {
+    padding: 14px 30px;
+  }
+}

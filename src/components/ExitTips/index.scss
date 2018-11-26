@@ -1,0 +1,22 @@
+.exit-dia-container {
+  .notice {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 34px;
+    }
+  }
+  .title {
+    margin-top: 17px;
+    font-size: 16px;
+    color: #374064;
+    font-weight: bold;
+    text-align: center;
+  }
+  .handler-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 26px;
+  }
+}

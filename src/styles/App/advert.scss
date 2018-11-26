@@ -1,0 +1,19 @@
+.dev-advert {
+  .el-card__body {
+    padding: 4px 0 4px 16px;
+  }
+  .add-app-mange-content {
+    position: relative;
+    .show-effect {
+      width: 296px;
+      height: 527px;
+      position: absolute;
+      right: 57px;
+      top: 94px;
+      img {
+        width: 100%;
+        transition: all 1s;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.username-container {
+  padding-top: 12px; // margin-left: 40px;
+}
+
+.show-name {
+  width: 240px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  span {
+    width: 210px;
+    height: 100%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.el-dropdown-menu {
+  padding: 0;
+  .account-icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+    vertical-align: -.22em !important;
+    margin-right: 4px;
+  }
+}
+
+.el-dropdown-menu__item {
+  padding: 5px 34px 5px 20px;
+}
+
+.el-dropdown-menu__item:focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #669cff;
+  color: #fff;
+}
+
+.el-dropdown-menu {
+  border: none;
+  margin-top: 24px !important;
+}
+
+.el-popper[x-placement^=bottom] .popper__arrow {
+  display: none;
+}

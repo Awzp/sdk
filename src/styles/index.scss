@@ -1,0 +1,35 @@
+@import './common.scss';
+@import './Initial/reset.scss';
+@import './Initial/variables.scss';
+@import './Initial/mixin.scss';
+@import './Initial/transition.scss';
+@import './Initial/element-ui.scss';
+@import './Initial/sidebar.scss';
+@import './Home/index.scss';
+@import './Overview/data.scss';
+@import './Overview/total.scss';
+@import './Statistics/index.scss';
+@import './App/index.scss';
+@import './Account/index.scss';
+@import './Initial/filtertab.scss'; //main-container全局样式
+.app-main {
+  width: $containerWidth;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 14px 30px;
+  background-color: rgba(220, 228, 239, 0.2);
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.container-padding {
+  padding: 13px 20px 20px;
+  background-color: #fff;
+}
+
+.trems-title {
+  cursor: pointer;
+  user-select: none;
+}
