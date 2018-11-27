@@ -12,13 +12,41 @@
 
 <script>
 import ShowItem from './showItem'
+import { getData } from '@/api/overview'
 export default {
   components: {
     ShowItem
   },
   data() {
     return {
-      data: [{
+      showData: {
+        pos: {
+          total: 0,
+          approve: 0,
+          deny: 0,
+          added: 0,
+          online: 0
+        },
+        app: {
+          total: 0,
+          approve: 0,
+          deny: 0,
+          added: 0
+        },
+        income: {
+          total: 0,
+          yestoday: 0,
+          week: 0,
+          month: 0,
+          today: 0
+        }
+
+      }
+    }
+  },
+  computed: {
+    'data': function() {
+      return [{
         style: {
           width: '205px'
         },
@@ -26,7 +54,7 @@ export default {
         type: 'showNumber',
         data: {
           title: '预估总收益',
-          number: 123443
+          number: this.showData.income.total
         }
       }, {
         style: {
@@ -35,7 +63,7 @@ export default {
         type: 'defalut',
         data: {
           title: '应用总数',
-          number: 1
+          number: this.showData.app.total
         }
       }, {
         style: {
@@ -44,23 +72,15 @@ export default {
         },
         type: 'adStatus',
         data: {
-          title: '应用总数',
+          title: '广告位',
           items: {
             put: {
               label: '投放中',
-              number: 12
+              number: this.showData.pos.online
             },
             audit: {
               label: '审核中',
-              number: 0
-            },
-            unaudit: {
-              label: '未审核',
-              number: 0
-            },
-            notPass: {
-              label: '未通过',
-              number: 0
+              number: this.showData.pos.added
             }
           }
         }
@@ -72,7 +92,7 @@ export default {
         type: 'showNumber',
         data: {
           title: '昨日收益',
-          number: 4324321
+          number: this.showData.income.yestoday
         }
       }, {
         style: {
@@ -82,7 +102,7 @@ export default {
         type: 'showNumber',
         data: {
           title: '近7天收益',
-          number: 32234433
+          number: this.showData.income.week
         }
       }, {
         style: {
@@ -92,7 +112,7 @@ export default {
         type: 'showNumber',
         data: {
           title: '本月收益',
-          number: 234243242134312
+          number: this.showData.income.month
         }
       }, {
         style: {
@@ -101,11 +121,15 @@ export default {
         fontSize: '18px',
         type: 'addApp',
         data: {
-          title: '添加App',
-          number: 123
+          title: '添加App'
         }
       }]
     }
+  },
+  created() {
+    getData().then(res => {
+      this.showData = res.data
+    })
   }
 }
 </script>
