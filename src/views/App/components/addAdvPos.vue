@@ -11,11 +11,15 @@ export default {
     id: {
       type: String,
       default: ''
+    },
+    app: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     addAdvert() {
-      this.$router.push({ 'path': '/app/addAdvert', query: { id: this.id }})
+      this.$router.push({ 'path': '/app/addAdvert', query: { id: this.id, app: this.app }})
     }
   }
 }

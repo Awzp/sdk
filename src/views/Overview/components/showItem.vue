@@ -65,7 +65,13 @@ export default {
               size: 'small',
               icon: 'el-icon-plus'
             },
-            class: ['ov-add-app']
+            class: ['ov-add-app'],
+            on: {
+              click: () => {
+                console.log(this)
+                this.$router.push({ 'path': '/app/addApp' })
+              }
+            }
           }
         )
         break

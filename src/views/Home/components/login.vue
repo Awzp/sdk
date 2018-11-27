@@ -83,11 +83,6 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.Login(this.loginForm).then(r => {
-            this.$notify({
-              showClose: true,
-              message: '登录成功',
-              type: 'success'
-            })
             this.$router.push({ 'path': '/' })
           })
         } else {

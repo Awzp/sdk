@@ -1,16 +1,6 @@
 <template>
   <div class="top-filter">
     <div class="top-filter-box" style="width: 220px">
-      <label>审核状态</label>
-      <el-select v-model="value" placeholder="请选择">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value" />
-      </el-select>
-    </div>
-    <div class="top-filter-box" style="width: 220px">
       <label>应用名称</label>
       <el-select v-model="value" placeholder="请选择">
         <el-option

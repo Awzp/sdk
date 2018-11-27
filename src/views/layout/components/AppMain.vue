@@ -1,5 +1,5 @@
 <template>
-  <section class="app-main">
+  <section :class="{'always': showAlways}" class="app-main">
     <transition name="fade-transform" mode="out-in">
       <!-- or name="fade" -->
       <!-- <router-view :key="key"></router-view> -->
@@ -12,9 +12,9 @@
 export default {
   name: 'AppMain',
   computed: {
-    // key() {
-    //   return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
-    // }
+    'showAlways': function() {
+      return this.$route.name === 'App'
+    }
   }
 }
 </script>
@@ -22,8 +22,11 @@ export default {
 <style scoped>
 .app-main {
   /*50 = navbar  */
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 64px);
   position: relative;
   overflow: hidden;
+}
+.always {
+  min-height: 100vh;
 }
 </style>

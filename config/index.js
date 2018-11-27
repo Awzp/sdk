@@ -10,13 +10,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/user': {
         target: 'http://ads-user.router.test.imoxiu.cn/',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/user': ''
         }
-      }
+      },
+      '/ssp': {
+        target: 'http://ads-ssp.router.test.imoxiu.cn/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ssp': ''
+        }
+      },
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

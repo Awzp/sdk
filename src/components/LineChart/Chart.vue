@@ -52,11 +52,11 @@ export default {
     this.$nextTick(function() {
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.showLoading({
-          text: 'loading',
-          color: '#669cff',
-          textColor: '#000',
-          maskColor: 'rgba(255, 255, 255, 0.8)',
-          zlevel: 0
+        text: 'loading',
+        color: '#669cff',
+        textColor: '#000',
+        maskColor: 'rgba(255, 255, 255, 0.8)',
+        zlevel: 0
       })
     })
   },

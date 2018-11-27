@@ -11,31 +11,53 @@
 
 <script>
 export default {
+  props: {
+    'appData': {
+      type: Object,
+      default: function() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
       descData: [[{
         name: 'AppID',
-        value: '37eufh'
+        key: 'appid',
+        value: ''
       }, {
         name: '程序主包名',
-        value: 'Android'
+        key: 'packagename',
+        value: ''
       }], [{
         name: '操作系统',
-        value: 'Android'
+        key: 'os',
+        value: ''
       }, {
         name: '应用分类',
-        value: '桌面'
+        key: 'subtype',
+        value: ''
       }], [{
         name: '日活用户数',
-        value: '10000000'
+        key: 'activeperday',
+        value: ''
       }, {
         name: '应用市场下载链接',
-        value: 'http://www.moxiu.com/aa/bb/cc'
+        key: 'linkurl',
+        value: ''
       }], [{
         name: '适用人群',
-        value: '女生'
+        key: 'groups',
+        value: ''
       }]]
     }
+  },
+  created() {
+    this.descData.forEach(item => {
+      item.forEach(descItem => {
+        descItem.value = this.appData[descItem.key]
+      })
+    })
   }
 }
 </script>
