@@ -25,6 +25,10 @@ export default {
       type: String,
       default: ''
     },
+    showLoading: {
+      type: Boolean,
+      default: false
+    },
     data: {
       type: Object,
       default: function() {
@@ -37,7 +41,9 @@ export default {
       chart: null,
       names: [],
       xItems: [],
-      series: []
+      series: [],
+      selectList: {},
+      constant: {}
     }
   },
   watch: {
@@ -46,17 +52,26 @@ export default {
       this.formatData(newV.datas)
       this.chart.hideLoading()
       this.initChart()
+    },
+    'showLoading': function(show) {
+      if (show) {
+        this.showChartLoading()
+      }
     }
   },
   mounted() {
     this.$nextTick(function() {
       this.chart = echarts.init(document.getElementById(this.id))
-      this.chart.showLoading({
-        text: 'loading',
-        color: '#669cff',
-        textColor: '#000',
-        maskColor: 'rgba(255, 255, 255, 0.8)',
-        zlevel: 0
+      this.showChartLoading()
+      this.chart.on('legendselectchanged', function(obj) {
+        console.log(obj)
+        const changeList = Object.assign({}, this.constant)
+        Object.keys(changeList).forEach(name => {
+          if (name === obj.name) {
+            changeList[name] = true
+          }
+        })
+        this.selectList = changeList
       })
     })
   },
@@ -68,11 +83,22 @@ export default {
     this.chart = null
   },
   methods: {
+    showChartLoading() {
+      this.chart.showLoading({
+        text: 'loading',
+        color: '#669cff',
+        textColor: '#000',
+        maskColor: 'rgba(255, 255, 255, 0.8)',
+        zlevel: 0
+      })
+    },
     formatData(dataList) {
       var names = []
       var datas = []
+      var selected = {}
       Object.keys(dataList).forEach((item, index) => {
         names.push(dataList[item].name)
+        selected[dataList[item].name] = false
         datas.push({
           name: dataList[item].name,
           type: 'line',
@@ -88,6 +114,9 @@ export default {
       })
       this.names = names
       this.series = datas
+      this.constant = Object.assign({}, selected)
+      this.selectList = selected
+      this.selectList['总计收入'] = true
     },
     initChart() {
       this.chart.setOption({
@@ -116,6 +145,7 @@ export default {
           itemWidth: 18,
           itemHeight: 8,
           itemGap: 13,
+          selected: this.selectList,
           data: this.names,
           left: '5%',
           top: '10%',

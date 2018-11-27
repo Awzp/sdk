@@ -8,10 +8,6 @@
         align="center"
         label="日期" />
       <el-table-column
-        prop="platform"
-        align="center"
-        label="所属平台" />
-      <el-table-column
         prop="requestNum"
         align="center"
         label="请求次数" />
@@ -57,7 +53,6 @@ export default {
     return {
       tableData: [{
         date: '2019-05-02',
-        platform: '全部',
         requestNum: 0,
         issueNum: 0,
         showNum: 0,
