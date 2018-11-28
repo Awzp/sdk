@@ -8,37 +8,25 @@
         align="center"
         label="日期" />
       <el-table-column
-        prop="requestNum"
-        align="center"
-        label="请求次数" />
-      <el-table-column
-        prop="issueNum"
-        align="center"
-        label="下发次数" />
-      <el-table-column
         prop="showNum"
         align="center"
-        label="展示次数" />
+        label="曝光量" />
       <el-table-column
         prop="clickNum"
         align="center"
-        label="点击次数" />
-      <el-table-column
-        prop="fullPercent"
-        align="center"
-        label="填充率" />
+        label="点击量" />
       <el-table-column
         prop="clickPercent"
         align="center"
         label="点击率" />
       <el-table-column
-        prop="eCPM"
+        prop="ECPM"
         align="center"
-        label="eCPM" />
+        label="ECPM" />
       <el-table-column
-        prop="eCPC"
+        prop="CPC"
         align="center"
-        label="eCPC" />
+        label="CPC" />
       <el-table-column
         prop="total"
         align="center"
@@ -53,7 +41,7 @@ export default {
     data: {
       type: Array,
       default: function() {
-        return {}
+        return []
       }
     }
   }

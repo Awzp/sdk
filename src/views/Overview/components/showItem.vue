@@ -68,7 +68,6 @@ export default {
             class: ['ov-add-app'],
             on: {
               click: () => {
-                console.log(this)
                 this.$router.push({ 'path': '/app/addApp' })
               }
             }

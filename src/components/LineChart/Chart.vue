@@ -122,7 +122,7 @@ export default {
       this.names = names
       this.series = datas
       this.selectList = selected
-      this.selectList['总计收入'] = true
+      this.selectList[this.activeName] = true
     },
     initChart() {
       this.chart.setOption({

@@ -165,21 +165,20 @@ export default {
     }
   },
   created() {
+    getCategory({ cataid: '5bf7b64158e3cf09fa4c0ff1' }).then(res => {
+      this.typeList = res.data.list
+    })
     if (this.$route.query.id) {
       getAppInfo(this.$route.query.id).then(res => {
         const data = res.data
         Object.keys(this.appData).forEach(item => {
           this.appData[item] = data[item]
         })
+        getCategory({ cataid: '5bf7b64158e3cf09fa4c0ff1', pid: this.appData.apptype }).then(res => {
+          this.subTypeList = res.data.list
+        })
       })
     }
-    getCategory({ cataid: '5bf7b64158e3cf09fa4c0ff1' }).then(res => {
-      this.typeList = res.data.list
-    }).then(() => {
-      getCategory({ cataid: '5bf7b64158e3cf09fa4c0ff1', pid: this.appData.apptype }).then(res => {
-        this.subTypeList = res.data.list
-      })
-    })
   },
   methods: {
     confirmTrems() {
