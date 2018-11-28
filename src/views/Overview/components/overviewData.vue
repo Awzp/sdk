@@ -12,7 +12,7 @@
 <script>
 import dataTable from '@/components/DataTable/dataTable'
 import Chart from '@/components/LineChart/chart'
-import { chartApi } from '@/api/chart'
+import { chartSimpleApi } from '@/api/overview'
 export default {
   components: {
     dataTable,
@@ -34,7 +34,7 @@ export default {
       this.getChartData()
     },
     getChartData() {
-      chartApi({ showtype: this.date }).then(res => {
+      chartSimpleApi({ showtype: this.date }).then(res => {
         this.chartData = res.data
         this.showChartLoading = false
       })

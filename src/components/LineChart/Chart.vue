@@ -1,12 +1,13 @@
 <template>
-  <div class="ov-chart">
+  <div class="chart">
     <div :id="id" :style="{height:height,width:width}"/>
+    <div class="button-group"></div>
   </div>
 </template>
 
 <script>
 import echarts from 'echarts'
-
+import './index.scss'
 export default {
   props: {
     id: {
@@ -63,15 +64,8 @@ export default {
     this.$nextTick(function() {
       this.chart = echarts.init(document.getElementById(this.id))
       this.showChartLoading()
-      this.chart.on('legendselectchanged', function(obj) {
-        console.log(obj)
-        const changeList = Object.assign({}, this.constant)
-        Object.keys(changeList).forEach(name => {
-          if (name === obj.name) {
-            changeList[name] = true
-          }
-        })
-        this.selectList = changeList
+      this.chart.on('legendselectchanged', (selected) => {
+        this.changeLegend(selected)
       })
     })
   },
@@ -83,6 +77,13 @@ export default {
     this.chart = null
   },
   methods: {
+    test() {
+      this.chart.dispatchAction({
+        type: 'legendToggleSelect',
+        // 图例名称
+        name: 'eCPC'
+      })
+    },
     showChartLoading() {
       this.chart.showLoading({
         text: 'loading',
@@ -92,15 +93,30 @@ export default {
         zlevel: 0
       })
     },
+    changeLegend(selected) {
+      const changeList = Object.assign({}, this.constant)
+      Object.keys(changeList).forEach(name => {
+        if (name === selected.name) {
+          changeList[name] = true
+        }
+      })
+      this.selectList = changeList
+      this.chart.setOption({
+        legend: {
+          selected: this.selectList
+        }
+      })
+    },
     formatData(dataList) {
       var names = []
       var datas = []
       var selected = {}
       Object.keys(dataList).forEach((item, index) => {
-        names.push(dataList[item].name)
-        selected[dataList[item].name] = false
+        var name = dataList[item].name
+        names.push(name)
+        selected[name] = false
         datas.push({
-          name: dataList[item].name,
+          name: name,
           type: 'line',
           smooth: true,
           symbol: 'circle',

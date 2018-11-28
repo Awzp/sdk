@@ -8,7 +8,7 @@ const baseURL = process.env.apiConfig.sspApi
 export function chartApi(params) {
   return request({
     baseURL,
-    url: `analysis/charts`,
+    url: 'analysis/charts',
     method: 'get',
     params
   })
