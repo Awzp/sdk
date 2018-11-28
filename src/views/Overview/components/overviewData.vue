@@ -4,7 +4,7 @@
       <el-radio-button label="yesterday">昨日</el-radio-button>
       <el-radio-button label="week">近7天</el-radio-button>
     </el-radio-group>
-    <data-table />
+    <data-table :data="tableList"/>
     <chart id="totalChart" :data="chartData" :show-loading="showChartLoading" height="420px" width="100%" title="全部应用总计收入（RMB)"/>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
     return {
       date: 'yesterday',
       chartData: null,
+      tableList: null,
       showChartLoading: false
     }
   },
@@ -35,7 +36,9 @@ export default {
     },
     getChartData() {
       chartSimpleApi({ showtype: this.date }).then(res => {
-        this.chartData = res.data
+        const data = res.data
+        this.chartData = { datas: data.datas, title: data.title }
+        this.tableList = data.list
         this.showChartLoading = false
       })
     }

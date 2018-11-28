@@ -6,4 +6,38 @@
     color: #374064;
     margin-bottom: 30px;
   }
+  .button-group {
+    user-select: none;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    button {
+      width: 110px;
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid #dcdfe6;
+      color: #606266;
+      -webkit-appearance: none;
+      text-align: center;
+      outline: 0;
+      margin: 0;
+      -webkit-transition: .1s;
+      transition: .1s;
+      font-weight: 500;
+      padding: 12px 20px;
+      font-size: 12px;
+      transition: all .1s;
+    }
+    button+button {
+      border-left: none;
+    }
+    .active {
+      background-color: #669cff;
+      color: #fff;
+    }
+  }
 }

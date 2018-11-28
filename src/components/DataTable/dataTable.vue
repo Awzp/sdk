@@ -1,7 +1,7 @@
 <template>
   <div class="table-box">
     <el-table
-      :data="tableData"
+      :data="data"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -49,20 +49,12 @@
 
 <script>
 export default {
-  data() {
-    return {
-      tableData: [{
-        date: '2019-05-02',
-        requestNum: 0,
-        issueNum: 0,
-        showNum: 0,
-        clickNum: 0,
-        fullPercent: 0,
-        clickPercent: 0,
-        eCPM: 0,
-        eCPC: 0,
-        total: 0
-      }]
+  props: {
+    data: {
+      type: Array,
+      default: function() {
+        return {}
+      }
     }
   }
 }

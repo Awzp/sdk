@@ -1,7 +1,9 @@
 <template>
   <div class="chart">
-    <div :id="id" :style="{height:height,width:width}"/>
-    <div class="button-group"></div>
+    <div :id="id" :style="{ height: height,width: width }"/>
+    <div class="button-group">
+      <button v-for="item in names" :key="item" :class="{'active': activeName === item }" @click="toggleLegend(item)">{{ item }}</button>
+    </div>
   </div>
 </template>
 
@@ -44,7 +46,8 @@ export default {
       xItems: [],
       series: [],
       selectList: {},
-      constant: {}
+      constant: {},
+      activeName: '总计收入'
     }
   },
   watch: {
@@ -64,9 +67,6 @@ export default {
     this.$nextTick(function() {
       this.chart = echarts.init(document.getElementById(this.id))
       this.showChartLoading()
-      this.chart.on('legendselectchanged', (selected) => {
-        this.changeLegend(selected)
-      })
     })
   },
   beforeDestroy() {
@@ -77,11 +77,16 @@ export default {
     this.chart = null
   },
   methods: {
-    test() {
+    toggleLegend(item) {
+      const yet = this.activeName
+      this.activeName = item
       this.chart.dispatchAction({
-        type: 'legendToggleSelect',
-        // 图例名称
-        name: 'eCPC'
+        type: 'legendUnSelect',
+        name: yet
+      })
+      this.chart.dispatchAction({
+        type: 'legendSelect',
+        name: item
       })
     },
     showChartLoading() {
@@ -91,20 +96,6 @@ export default {
         textColor: '#000',
         maskColor: 'rgba(255, 255, 255, 0.8)',
         zlevel: 0
-      })
-    },
-    changeLegend(selected) {
-      const changeList = Object.assign({}, this.constant)
-      Object.keys(changeList).forEach(name => {
-        if (name === selected.name) {
-          changeList[name] = true
-        }
-      })
-      this.selectList = changeList
-      this.chart.setOption({
-        legend: {
-          selected: this.selectList
-        }
       })
     },
     formatData(dataList) {
@@ -130,7 +121,6 @@ export default {
       })
       this.names = names
       this.series = datas
-      this.constant = Object.assign({}, selected)
       this.selectList = selected
       this.selectList['总计收入'] = true
     },
@@ -157,21 +147,11 @@ export default {
           }
         },
         legend: {
-          icon: 'rect',
-          itemWidth: 18,
-          itemHeight: 8,
-          itemGap: 13,
           selected: this.selectList,
-          data: this.names,
-          left: '5%',
-          top: '10%',
-          textStyle: {
-            fontSize: 14,
-            color: '#333'
-          }
+          show: false
         },
         grid: {
-          top: 100,
+          top: 60,
           left: '2%',
           right: '2%',
           bottom: '2%',
