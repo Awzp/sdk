@@ -64,3 +64,16 @@ export function delteApp(appid) {
     params: { appid }
   })
 }
+
+/**
+ * @param {Object} params
+ * @description 删除应用接口
+ */
+export function getOpts() {
+  return request({
+    baseURL: process.env.apiConfig.sspApi,
+    url: 'applications/opts',
+    method: 'get'
+  })
+}
+

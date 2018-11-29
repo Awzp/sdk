@@ -1,6 +1,6 @@
 <template>
   <div>
-    <filter-tab />
+    <filter-tab/>
     <bag-box title="趋势总览">
       <StTotal slot="content" />
     </bag-box>
@@ -15,13 +15,17 @@ import BagBox from '@/components/BagBox'
 import FilterTab from './components/FilterTab'
 import StTotal from './components/StTotal'
 import StTable from './components/StTable'
-
+import { mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     BagBox,
     FilterTab,
     StTotal,
     StTable
+  },
+  created() {
+  },
+  methods: {
   }
 }
 </script>
